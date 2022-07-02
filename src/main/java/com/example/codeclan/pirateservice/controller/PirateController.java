@@ -24,4 +24,10 @@ public class PirateController {
     public ResponseEntity<Optional<Pirate>> getPirateById(@PathVariable Long id) {
         return new ResponseEntity<>(pirateRepository.findById(id), HttpStatus.OK);
     }
+
+    @PostMapping(value = "/pirates")
+    public ResponseEntity<Optional<Pirate>> postPirate(@RequestBody Pirate pirate) {
+        pirateRepository.save(pirate);
+        return new ResponseEntity(pirate, HttpStatus.CREATED);
+    }
 }
